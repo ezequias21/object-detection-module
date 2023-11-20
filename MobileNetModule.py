@@ -21,7 +21,7 @@ class msSSD():
 
             if display:
                 left,top,right,bottom = int(d.Left), int(d.Top), int(d.Right), int(d.Bottom)
-                cv2.putText(img, f'FPS: {self.net.GetNetworkFPS()}', (30,30), cv2.FONT_HERSHEY_DUPLEX, 1, (255,0,0), 2)
+                cv2.putText(img, f'FPS: {self.net.GetNetworkFPS()}', (30,30), cv2.FONT_HERSHEY_DUPLEX, 0.3, (255,0,0), 1)
                 self.draw_box(img, left, top, right, bottom, className, self.colors[d.ClassID])
         return objects
     
