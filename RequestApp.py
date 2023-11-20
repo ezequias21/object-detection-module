@@ -1,12 +1,13 @@
-import requests
+import socket
 import cv2
 
 class RequestApp():
-    def __init__(self, api_url='http://localhost:3000/api/frames'):
-        self.api_url = api_url 
+    def __init__(self):
+        self.server_address = ('104.131.67.86', 2814) 
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     def send(self, img):
         _, jpeg = cv2.imencode('.jpg', img)
         jpegBytes = jpeg.tobytes()
-
-        response = requests.post(self.api_url, files={'image': jpegBytes})
+        if len(jpegBytes) < 65536:
+            self.socket.sendto(jpegBytes, self.server_address)
