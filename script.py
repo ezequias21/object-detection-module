@@ -50,6 +50,6 @@ while True:
 
     frame_identifier+=1
     if (frame_identifier % 15) == 0:
-        cv2.imwrite(f"image{random.randint(1, 20)}.png", img)
+        cv2.imwrite(f"image{random.randint(1, 10000)}.png", img)
 
     cv2.waitKey(1)
