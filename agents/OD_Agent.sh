@@ -4,15 +4,19 @@ process_name="$OD_Module"
 directory_OD_Program="$PATH_OD_Module"
 
 init_OD_Module() {
-    # Move para o diretório específico
-    cd "$directory_OD_Program" || exit
+    pid=$(pgrep -f "$process_name")
 
-    # Python command
-    comando_python="python3 $process_name -s"
+    if [ -z "$pid" ]; then
+        # Move para o diretório específico
+        cd "$directory_OD_Program" || exit
 
-    # Executing python command
-    $comando_python
-    echo "Script executing..."
+        # Python command
+        comando_python="python3 $process_name -s"
+
+        # Executing python command
+        $comando_python
+        echo "Script executing..."
+    fi
 }
 
 echo "Started OD Agent"
